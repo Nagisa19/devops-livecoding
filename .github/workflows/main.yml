@@ -23,6 +23,4 @@ jobs:
 
       # Navigate to the 'simple-api' directory and build/test the application using Maven
       - name: Build and test with Maven
-        run: |
-          cd simple-api
-          mvn -B verify sonar:sonar -Dsonar.projectKey=devops-2024 -Dsonar.organization=devops-school -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=Nagisa19_devops-livecoding -Dsonar.organization=nagisa19 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
