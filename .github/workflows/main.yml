@@ -21,6 +21,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # Build and test the application using Maven
+      # Navigate to the 'simple-api' directory and build/test the application using Maven
       - name: Build and test with Maven
-        run: mvn clean install
+        run: |
+          cd simple-api
+          mvn clean install
