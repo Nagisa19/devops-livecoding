@@ -30,7 +30,7 @@ jobs:
       - name: Build image and push database
         uses: docker/build-push-action@v3
         with:
-          context: .database
+          context: ./database
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-livecoding-database:latest
           push: ${{ github.ref == 'refs/heads/main' }}
 
