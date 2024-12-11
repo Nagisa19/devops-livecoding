@@ -1,0 +1,43 @@
+name: Build and Publish Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish-docker-images:
+    runs-on: ubuntu-22.04
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v2.5.0
+
+      # Step 2: Login to DockerHub with username and password
+      - name: Login to DockerHub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      # Step 3: Build and push backend image
+      - name: Build image and push backend
+        uses: docker/build-push-action@v3
+        with:
+          context: ../../simple-api
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-livecoding-backend:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
+
+      # Step 4: Build and push database image
+      - name: Build image and push database
+        uses: docker/build-push-action@v3
+        with:
+          context: ../../database
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-livecoding-database:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
+
+      # Step 5: Build and push httpd image
+      - name: Build image and push httpd
+        uses: docker/build-push-action@v3
+        with:
+          context: ../../http-server
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-livecoding-httpd:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
