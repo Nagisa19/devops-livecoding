@@ -1,4 +1,4 @@
-name: CI devops 2024
+name: Test Backend
 on:
   # Launch the workflow on pushes to main and develop branches
   push:
@@ -23,4 +23,4 @@ jobs:
 
       # Navigate to the 'simple-api' directory and build/test the application using Maven
       - name: Build and test with Maven
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=${{ secrets.SONAR_PROJECTKEY }} -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=${{ secrets.SONAR_PROJECTKEY }} -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=${{ secrets.SONAR_TOKEN }} --file ./simple-api/pom.xml
