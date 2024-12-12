@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-publish-docker-images:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-22.04
 
     steps:
@@ -27,7 +27,7 @@ jobs:
         with:
           context: ./simple-api
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-livecoding-backend:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
 
       # Step 4: Build and push database image
       - name: Build image and push database
@@ -35,7 +35,7 @@ jobs:
         with:
           context: ./database
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-livecoding-database:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
 
       # Step 5: Build and push httpd image
       - name: Build image and push httpd
@@ -43,4 +43,4 @@ jobs:
         with:
           context: ./http-server
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-livecoding-httpd:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
