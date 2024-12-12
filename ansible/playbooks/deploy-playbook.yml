@@ -9,20 +9,20 @@
 
     - name: Include Install Docker role
       include_role:
-        name: roles/docker
+        name: ansible/roles/docker
 
     - name: Include Create Network role
       include_role:
-        name: roles/network
+        name: ansible/roles/network
 
     - name: Include Launch Database role
       include_role:
-        name: roles/database
+        name: ansible/roles/database
 
     - name: Include Launch App role
       include_role:
-        name: roles/app
+        name: ansible/roles/app
 
     - name: Include Launch Proxy role
       include_role:
-        name: roles/proxy
+        name: ansible/roles/proxy
