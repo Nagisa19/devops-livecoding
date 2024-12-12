@@ -1,0 +1,18 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/app
+- name: Launch Spring Boot Backend Container
+  docker_container:
+    name: my-api
+    image: clestrat/devops-livecoding-backend:latest
+    state: started
+    restart_policy: always
+    env:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://my-database:5432/my_database"
+      SPRING_DATASOURCE_USERNAME: "my_user"
+      SPRING_DATASOURCE_PASSWORD: "my_password"
+      SPRING_PROFILES_ACTIVE: "production"
+    networks:
+      - name: my-network
+    ports:
+      - "8080:8080"

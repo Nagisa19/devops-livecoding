@@ -1,0 +1,12 @@
+- name: Test Docker Role
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Test connection
+      ping:
+
+    - name: Include Docker role
+      include_role:
+        name: roles/docker

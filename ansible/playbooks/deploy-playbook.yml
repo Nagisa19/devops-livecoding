@@ -1,0 +1,28 @@
+- name: Deploy Application
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Test connection
+      ping:
+
+    - name: Include Install Docker role
+      include_role:
+        name: roles/docker
+
+    - name: Include Create Network role
+      include_role:
+        name: roles/network
+
+    - name: Include Launch Database role
+      include_role:
+        name: roles/database
+
+    - name: Include Launch App role
+      include_role:
+        name: roles/app
+
+    - name: Include Launch Proxy role
+      include_role:
+        name: roles/proxy

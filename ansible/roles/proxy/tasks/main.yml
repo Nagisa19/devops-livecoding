@@ -1,0 +1,13 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/proxy
+- name: Launch Apache HTTP server container
+  docker_container:
+    name: my-reverse-proxy
+    image: clestrat/devops-livecoding-httpd:latest
+    networks:
+      - name: my-network
+    ports:
+      - "80:80"
+    state: started
+    restart_policy: always

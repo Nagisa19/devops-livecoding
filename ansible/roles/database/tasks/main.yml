@@ -1,0 +1,17 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/database
+- name: Launch PostgreSQL database container
+  docker_container:
+    name: my-database
+    image: clestrat/devops-livecoding-database:latest
+    env:
+      POSTGRES_DB: "my_database"
+      POSTGRES_USER: "my_user"
+      POSTGRES_PASSWORD: "my_password"
+    networks:
+      - name: my-network
+    volumes:
+      - /data/postgres:/var/lib/postgresql/data
+    state: started
+    restart_policy: always
