@@ -17,6 +17,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2.5.0
 
+      # Step 2: Set up SSH Key for Ansible
+      - name: Configure SSH Key
+        run: |
+          echo "${{ secrets.ANSIBLE_SSH_KEY }}" > /tmp/id_rsa
+          chmod 600 /tmp/id_rsa
+
       # Step 2: Set up Ansible
       - name: Install Ansible
         run: |
